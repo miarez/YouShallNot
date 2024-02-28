@@ -1,0 +1,254 @@
+body, html {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    margin: 0px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.keypad{
+    background-color: #ccc;
+    margin: 5em auto;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 0 3px rgba(255, 255, 255, 0.25), 0 3px 9px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 0 3px rgba(255, 255, 255, 0.25), 0 3px 9px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 0 3px rgba(255, 255, 255, 0.25), 0 3px 9px rgba(0, 0, 0, 0.5);
+}
+
+.keypad.dark{
+    background-color: #333;
+}
+
+.keypad {
+    height: 260px;
+    overflow: hidden;
+    position: relative;
+    width: 288px;
+}
+
+.keypad:focus{
+    outline: 0;
+    -webkit-box-shadow: inset 0 0 0 1px rgba(51, 153, 255, 1), 0 1px 1px rgba(255, 255, 255, 0.5), 0 0 5px rgba(51, 153, 255, 0.75);
+    -moz-box-shadow: inset 0 0 0 1px rgba(51, 153, 255, 1), 0 1px 1px rgba(255, 255, 255, 0.5), 0 0 5px rgba(51, 153, 255, 0.75);
+    box-shadow: inset 0 0 0 1px rgba(51, 153, 255, 1), 0 1px 1px rgba(255, 255, 255, 0.5), 0 0 5px rgba(51, 153, 255, 0.75);
+}
+.keypad .keypad-input-field {
+    height: 40px;
+    margin: auto;
+    position: relative;
+    transition: all 0.25s;
+    transition-delay: 0.1s;
+    width: 90%;
+}
+.keypad .keypad-input-field:after {
+    background-color: rgba(0, 0, 0, 0.2);
+    bottom: 0px;
+    content: '';
+    height: 1px;
+    left: 0px;
+    position: absolute;
+    width: 100%;
+}
+.keypad.dark .keypad-input-field:after{
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.keypad .entered-numbers-wrapper {
+    height: 30px;
+    left: 0px;
+    overflow: hidden;
+    position: absolute;
+    top: 5px;
+    width: 100%;
+}
+.keypad .entered-numbers {
+    height: 30px;
+    left: 50%;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+.keypad .num {
+    color: black;
+    animation: fade-in-num 0.1s linear;
+    backface-visibility: hidden;
+    display: inline-block;
+    font-weight: 300;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    transition: all 0.25s;
+    width: 12px;
+}
+.keypad.dark .num{
+    color: white;
+}
+.keypad .num.hidden {
+    font-size: 0;
+}
+.keypad .num.hidden:after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-50%) scale(1);
+}
+.keypad .num.erased:after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-50%) scale(0.25);
+}
+.keypad .num:after {
+    background-color: black;
+    border-radius: 8px;
+    content: '';
+    height: 8px;
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%) scale(0.25);
+    transition: all 0.25s;
+    width: 8px;
+}
+.keypad.dark .num:after{
+    background-color: white;
+}
+.keypad .backspace {
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 30px;
+}
+.keypad .backspace .backspace-icon {
+    background-color: black;
+    color: white;
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+    display: inline-block;
+    height: 14px;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    user-select: none;
+    width: 14px;
+}
+.keypad.dark .backspace .backspace-icon{
+    background-color: white;
+    color: black;
+}
+.keypad .backspace .backspace-icon:after {
+    border: 0px solid transparent;
+    border-bottom-width: 7px;
+    border-right: 6px solid black;
+    border-top-width: 7px;
+    content: '';
+    height: 0px;
+    left: -6px;
+    position: absolute;
+    width: 0px;
+}
+.keypad.dark .backspace .backspace-icon:after{
+    border-right: 6px solid white;
+}
+.keypad .backspace .backspace-icon i {
+    font-size: 0.75em;
+    height: 14px;
+    line-height: 14px;
+    position: absolute;
+    right: 0px;
+    text-align: center;
+    top: 0px;
+    width: 14px;
+}
+.keypad .keypad-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    margin-top: 10px;
+    position: relative;
+    width: 90%;
+}
+.keypad .item-wrapper {
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.25s;
+    position: relative;
+    vertical-align: top;
+    transition: all 0.25s;
+    width: 33.3%;
+}
+.keypad .item-wrapper.zero {
+    margin-left: 86px;
+}
+.keypad .item-wrapper .item {
+    height: 40px;
+    margin-top: 10px;
+    text-align: center;
+}
+.keypad .item-wrapper .item i {
+    color: black;
+}
+.keypad.dark .item-wrapper .item i {
+    color: white;
+}
+.keypad .item-wrapper .item h1, .keypad .item-wrapper .item h2 {
+    margin: 0px;
+    text-align: center;
+}
+.keypad .item-wrapper .item h1 {
+    color: black;
+    font-size: 1.2em;
+    font-weight: 300;
+    height: 20px;
+    line-height: 20px;
+}
+.keypad.dark .item-wrapper .item h1{
+    color: white;
+}
+.keypad .item-wrapper .item h2 {
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 0.6em;
+    font-weight: 300;
+    height: 10px;
+    line-height: 10px;
+}
+.keypad.dark .item-wrapper .item h2{
+    color: rgba(255, 255, 255, 0.8);
+}
+.keypad .hover-dot:hover:before {
+    opacity: 0.1;
+    transform: translateX(-50%) translateY(-50%) scale(1);
+}
+.keypad .hover-dot:active:before {
+    opacity: 0.2;
+    transform: translateX(-50%) translateY(-50%) scale(1.2);
+}
+.keypad .hover-dot:before {
+    background-color: black;
+    border-radius: 30px;
+    content: '';
+    height: 60px;
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%) scale(0.3);
+    transition: all 0.25s;
+    width: 60px;
+}
+.keypad.dark .hover-dot:before {
+    background-color: white;
+}
+@keyframes fade-in-num {
+    0% {
+        opacity: 0;
+        transform: translateY(50%) scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%) scale(1);
+    }
+}
